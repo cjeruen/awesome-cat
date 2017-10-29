@@ -1,0 +1,45 @@
+version: '3'
+
+networks:
+  cat_test:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.50.0.0/24
+
+services:
+  cat_test_main:
+    build: ./cat
+    volumes:
+      - ./hosts:/etc/hosts:ro
+      - ./cat/data:/data
+    networks:
+      cat_test:
+        ipv4_address: 172.50.0.11
+    # working_dir: /cat/cat-2.0.0/cat-home
+    # command: mvn jetty:run
+    ports:
+      - "2280:2280"
+      - "2281:2281"
+    hostname: cat_test_main
+    container_name: cat_test_main
+
+  cat_test_mysql:
+    build: ./mysql
+    volumes:
+      - ./hosts:/etc/hosts:ro
+      - ./mysql/db:/var/lib/mysql
+    networks:
+      cat_test:
+        ipv4_address: 172.50.0.21
+    ports:
+      - "33061:3306"
+    hostname: cat_test_mysql
+    container_name: cat_test_mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_HOST: '%'
+
+
+

@@ -21,4 +21,6 @@ $ docker run --name dianping-cat -d -p 22801:2280 -p 22811:2281 dianping/cat:v2.
 
 ```
 
-### 2. via docker-composer
+### 2. via docker-compose
+
+- https://github.com/cjeruen/awesome-cat/tree/master/docker-cat-example

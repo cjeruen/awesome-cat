@@ -1,0 +1,4 @@
+127.0.0.1       localhost
+
+172.50.0.11     cat_test_main
+172.50.0.21     cat_test_mysql
